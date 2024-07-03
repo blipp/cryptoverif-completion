@@ -43,6 +43,22 @@ The full command to use CryptoVerif with this feature is
 rlwrap --history-filename ~/.rlwrap_hist_cryptoverif --break-chars "(){}[],+=&^%$#@"";|\\" --file ~/.rlwrap_cryptoverif_completion.conf cryptoverif some_file.cv
 ```
 
+### Use It In A Script
+
+The Bash script `rlwrap.bash` can be used in scripts to call CryptoVerif
+with the rlwrap wrapper. Use it as follows:
+
+* set some variables to modify the behavior, they are set with reasonable defaults:
+    * `RLWRAP_HIST_FILE`: location of the file to which command history should be written, and from which it should be read
+    * `RLWRAP_GLOBAL_COMPLETION_FILE`: location of a file with completion chunks, defaults to the file present in this repository
+    * `RLWRAP_LOCAL_COMPLETION_FILE`: location of a second file with completion chunks, defaults to the file `rlwrap_cryptoverif_completion.conf` in the current directory of the calling script; this is meant to be used for completion chunks custom to a CryptoVerif project
+* in your own Bash script, source the file `rlwrap.bash`, for example with
+```bash
+. ./cryptoverif-completion/rlwrap.bash
+```
+* call CryptoVerif with `${RLWRAP_CMD} cryptoverif`
+
+
 ### Adding an Alias in Your Shell
 Because this is quite long we suggest adding an alias to your shell
 configuration. In ZSH this can look like this:
